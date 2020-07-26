@@ -6,12 +6,14 @@ import {
   HeaderStyleInterpolators,
   CardStyleInterpolators,
 } from '@react-navigation/stack';
-import Home from '@/pages/Home';
+import BottomTabs from './BottomTabs';
 import Detail from '@/pages/Detail';
 import {Platform, StyleSheet} from 'react-native';
 
 export type RootStackParamList = {
-  Home: undefined; // 用来定义页面组件需要接收的参数, 只能是 undefined 或者 object
+  BottomTabs: {
+    screen?: string;
+  }; // 用来定义页面组件需要接收的参数, 只能是 undefined 或者 object
   Detail: {
     id: number;
   };
@@ -53,8 +55,8 @@ const Navigator = () => {
         {/* Screen 的 options 属性与 Navigator 的 screenOptions 是一样的 */}
         <Stack.Screen
           options={{headerTitle: '首页'}}
-          name="Home"
-          component={Home}
+          name="BottomTabs"
+          component={BottomTabs}
         />
         <Stack.Screen
           options={{headerTitle: '详情'}}
