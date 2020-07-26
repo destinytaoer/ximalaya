@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {View, Text} from 'react-native';
 import {RouteProp} from '@react-navigation/native';
 import {RootStackParamList} from '@/navigator/index';
@@ -9,7 +9,7 @@ interface Props {
   route: RouteProp<RootStackParamList, 'Detail'>;
 }
 
-const Detail = (props: Props) => {
+const Detail: FC<Props> = (props) => {
   const {route} = props;
   return (
     <View>

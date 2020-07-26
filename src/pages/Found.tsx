@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {View, Text, Button} from 'react-native';
 import {RootStackNavigation} from '../navigator';
 
@@ -7,7 +7,7 @@ interface Props {
   navigation: RootStackNavigation;
 }
 
-const Found = (props: Props) => {
+const Found: FC<Props> = (props) => {
   const handlePress = () => {
     const {navigation} = props;
     navigation.navigate('Detail', {

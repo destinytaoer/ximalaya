@@ -1,4 +1,4 @@
-import React, {useEffect} from 'react';
+import React, {FC, useEffect} from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {RouteProp, TabNavigationState} from '@react-navigation/native';
 import Home from '@/pages/Home';
@@ -49,7 +49,7 @@ function getHeaderTitle(route: Route) {
   }
 }
 
-const BottomTabs = ({navigation, route}: Props) => {
+const BottomTabs: FC<Props> = ({navigation, route}) => {
   useEffect(() => {
     navigation.setOptions({
       headerTitle: getHeaderTitle(route),

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {FC} from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {
   createStackNavigator,
@@ -28,7 +28,7 @@ export type RootStackNavigation = StackNavigationProp<RootStackParamList>;
 // {[x:string]: object|undefined}
 let Stack = createStackNavigator<RootStackParamList>();
 
-const Navigator = () => {
+const Navigator: FC = () => {
   return (
     <NavigationContainer>
       <Stack.Navigator
