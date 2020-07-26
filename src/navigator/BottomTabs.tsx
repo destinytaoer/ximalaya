@@ -1,11 +1,12 @@
 import React, {useEffect} from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import {RouteProp, TabNavigationState} from '@react-navigation/native';
 import Home from '@/pages/Home';
 import Listen from '@/pages/Listen';
 import Found from '@/pages/Found';
 import Account from '@/pages/Account';
+import Icon from '@/assets/iconfont/index';
 import {RootStackNavigation, RootStackParamList} from './';
-import {RouteProp, TabNavigationState} from '@react-navigation/native';
 
 export type BottomTabsParamList = {
   Home: undefined;
@@ -63,22 +64,42 @@ const BottomTabs = ({navigation, route}: Props) => {
       <tabs.Screen
         name="Home"
         component={Home}
-        options={{tabBarLabel: '首页'}}
+        options={{
+          tabBarLabel: '首页',
+          tabBarIcon: ({color, size}) => (
+            <Icon name="home" color={color} size={size} />
+          ),
+        }}
       />
       <tabs.Screen
         name="Listen"
         component={Listen}
-        options={{tabBarLabel: '我听'}}
+        options={{
+          tabBarLabel: '我听',
+          tabBarIcon: ({color, size}) => (
+            <Icon name="listen" color={color} size={size} />
+          ),
+        }}
       />
       <tabs.Screen
         name="Found"
         component={Found}
-        options={{tabBarLabel: '发现'}}
+        options={{
+          tabBarLabel: '发现',
+          tabBarIcon: ({color, size}) => (
+            <Icon name="discover" color={color} size={size} />
+          ),
+        }}
       />
       <tabs.Screen
         name="Account"
         component={Account}
-        options={{tabBarLabel: '我的'}}
+        options={{
+          tabBarLabel: '我的',
+          tabBarIcon: ({color, size}) => (
+            <Icon name="account" color={color} size={size} />
+          ),
+        }}
       />
     </tabs.Navigator>
   );
