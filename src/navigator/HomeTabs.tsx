@@ -1,6 +1,7 @@
 import React, {FC} from 'react';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import Home from '@/pages/Home';
+import Home from '@pages/Home';
+import {THEME_COLOR} from '@styles/color';
 
 const Tabs = createMaterialTopTabNavigator();
 
@@ -17,7 +18,7 @@ const HomeTabs: FC = () => {
           width: 20,
           marginLeft: 30,
           borderRadius: 2,
-          backgroundColor: '#f86442',
+          backgroundColor: THEME_COLOR,
         },
       }}>
       <Tabs.Screen name="Home" component={Home} />

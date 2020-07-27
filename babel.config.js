@@ -6,13 +6,15 @@ module.exports = {
       {
         root: './src', // 绝对路径的根目录
         alias: {
-          '@/utils': './src/utils',
-          '@/components': './src/components',
-          '@/assets': './src/assets',
-          '@/pages': './src/pages',
+          '@': './src',
+          '@utils': './src/utils',
+          '@components': './src/components',
+          '@assets': './src/assets',
+          '@pages': './src/pages',
           '@models': './src/models',
-          '@/navigator': './src/navigator',
-          '@/config': './src/config',
+          '@navigator': './src/navigator',
+          '@config': './src/config',
+          '@styles': './src/styles',
         },
       },
     ],

@@ -7,7 +7,7 @@ import {
   CardStyleInterpolators,
 } from '@react-navigation/stack';
 import BottomTabs from './BottomTabs';
-import Detail from '@/pages/Detail';
+import Detail from '@pages/Detail';
 import {Platform, StyleSheet} from 'react-native';
 
 export type RootStackParamList = {

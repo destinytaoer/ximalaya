@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import {View, Text} from 'react-native';
 import {RouteProp} from '@react-navigation/native';
-import {RootStackParamList} from '@/navigator/index';
+import {RootStackParamList} from '@navigator/index';
 
 // route 也是 navigation 传入的参数
 interface Props {

@@ -2,11 +2,12 @@ import React, {FC, useEffect} from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {RouteProp, TabNavigationState} from '@react-navigation/native';
 import HomeTabs from './HomeTabs';
-import Listen from '@/pages/Listen';
-import Found from '@/pages/Found';
-import Account from '@/pages/Account';
-import Icon from '@/assets/iconfont/index';
+import Listen from '@pages/Listen';
+import Found from '@pages/Found';
+import Account from '@pages/Account';
+import Icon from '@assets/iconfont/index';
 import {RootStackNavigation, RootStackParamList} from './';
+import {THEME_COLOR} from '@styles/color';
 
 export type BottomTabsParamList = {
   HomeTabs: undefined;
@@ -59,7 +60,7 @@ const BottomTabs: FC<Props> = ({navigation, route}) => {
   return (
     <tabs.Navigator
       tabBarOptions={{
-        activeTintColor: '#f86442',
+        activeTintColor: THEME_COLOR,
       }}>
       <tabs.Screen
         name="HomeTabs"
