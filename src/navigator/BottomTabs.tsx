@@ -1,7 +1,7 @@
 import React, {FC, useEffect} from 'react';
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {RouteProp, TabNavigationState} from '@react-navigation/native';
-import Home from '@/pages/Home';
+import HomeTabs from './HomeTabs';
 import Listen from '@/pages/Listen';
 import Found from '@/pages/Found';
 import Account from '@/pages/Account';
@@ -9,7 +9,7 @@ import Icon from '@/assets/iconfont/index';
 import {RootStackNavigation, RootStackParamList} from './';
 
 export type BottomTabsParamList = {
-  Home: undefined;
+  HomeTabs: undefined;
   Listen: undefined;
   Found: undefined;
   Account: undefined;
@@ -34,11 +34,11 @@ function getHeaderTitle(route: Route) {
   // 然后通过 state 中的 index 标记当前路由索引,从而获得当前路由,然后通过 name 属性获取名称
   const routeName = route.state
     ? route.state.routes[route.state.index].name
-    : route.params?.screen || 'Home';
+    : route.params?.screen || 'HomeTabs';
   // 这里之所以再加一个判断, 是为了防止从其他页面直接跳转到当前 tab 页的情况, 需要往 BottomTabs 组件传一个 screen 参数, 表示路由名
 
   switch (routeName) {
-    case 'Home':
+    case 'HomeTabs':
       return '首页';
     case 'Listen':
       return '我听';
@@ -62,8 +62,8 @@ const BottomTabs: FC<Props> = ({navigation, route}) => {
         activeTintColor: '#f86442',
       }}>
       <tabs.Screen
-        name="Home"
-        component={Home}
+        name="HomeTabs"
+        component={HomeTabs}
         options={{
           tabBarLabel: '首页',
           tabBarIcon: ({color, size}) => (
