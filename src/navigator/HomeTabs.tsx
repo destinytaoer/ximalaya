@@ -8,6 +8,7 @@ const Tabs = createMaterialTopTabNavigator();
 const HomeTabs: FC = () => {
   return (
     <Tabs.Navigator
+      lazy // 懒加载
       tabBarOptions={{
         scrollEnabled: true, // 放不下时可以滚动
         tabStyle: {
@@ -20,11 +21,10 @@ const HomeTabs: FC = () => {
           borderRadius: 2,
           backgroundColor: THEME_COLOR,
         },
+        activeTintColor: THEME_COLOR,
+        inactiveTintColor: '#333',
       }}>
-      <Tabs.Screen name="Home" component={Home} />
-      <Tabs.Screen name="Home1" component={Home} />
-      <Tabs.Screen name="Home2" component={Home} />
-      <Tabs.Screen name="Home3" component={Home} />
+      <Tabs.Screen name="Home" component={Home} options={{title: '推荐'}} />
     </Tabs.Navigator>
   );
 };

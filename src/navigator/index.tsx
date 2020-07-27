@@ -8,7 +8,7 @@ import {
 } from '@react-navigation/stack';
 import BottomTabs from './BottomTabs';
 import Detail from '@pages/Detail';
-import {Platform, StyleSheet} from 'react-native';
+import {Platform, StyleSheet, StatusBar} from 'react-native';
 
 export type RootStackParamList = {
   BottomTabs: {
@@ -41,6 +41,8 @@ const Navigator: FC = () => {
           cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS, // 设置 Android 跳转动画为水平
           gestureEnabled: true, // Android 启用手势进行返回
           gestureDirection: 'horizontal', // Android 手势水平
+          // headerStatusBarHeight:
+          //  StatusBar.currentHeight,
           headerStyle: {
             // 去掉 Android 滑动过程中出现的阴影,以及导航栏的底部边框
             ...Platform.select({
