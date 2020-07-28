@@ -1,6 +1,6 @@
 import React, {FC} from 'react';
 import {createMaterialTopTabNavigator} from '@react-navigation/material-top-tabs';
-import Home from '@pages/Home';
+import Home from '@pages/Home/index';
 import {THEME_COLOR} from '@styles/color';
 
 const Tabs = createMaterialTopTabNavigator();

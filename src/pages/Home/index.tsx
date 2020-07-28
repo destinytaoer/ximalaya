@@ -1,7 +1,7 @@
 import React, {FC} from 'react';
 import {View, Text, Button} from 'react-native';
-import {RootStackNavigation} from '../navigator';
-
+import {RootStackNavigation} from '../../navigator';
+import Carousel from './Carousel';
 // navigator 是由 navigation 传递的参数
 interface Props {
   navigation: RootStackNavigation;
@@ -18,6 +18,7 @@ const Home: FC<Props> = (props) => {
     <View>
       <Text>Home</Text>
       <Button title="跳转到详情页" onPress={handlePress} />
+      <Carousel />
     </View>
   );
 };
