@@ -92,7 +92,7 @@ const Guess: FC<ModelState> = (props) => {
 const styles = StyleSheet.create({
   container: {
     backgroundColor: '#fff',
-    margin: 16,
+    margin: 10,
     borderRadius: 8,
   },
   item: {
