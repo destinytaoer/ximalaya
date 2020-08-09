@@ -1,50 +1,72 @@
 import {Model, Effect} from 'dva-core-ts';
 import {Reducer} from 'redux';
+import axios from 'axios';
+
+const CAROUSEL_URL = '/mock/11/api/carousel';
+const GUESS_URL = '/mock/11/api/guess';
+
+export interface ICarousel {
+  id: string;
+  colors: [string, string];
+  image: string;
+}
+
+export interface IGuess {
+  id: string;
+  title: string;
+  image: string;
+}
 
 interface HomeState {
-  num: number;
+  carousels: ICarousel[];
+  guess: IGuess[];
 }
 
 interface HomeModel extends Model {
   namespace: 'home';
   state: HomeState;
   reducers: {
-    add: Reducer<HomeState>;
+    setState: Reducer<HomeState>;
   };
   effects: {
-    asyncAdd: Effect;
+    fetchCarousels: Effect;
+    fetchGuess: Effect;
   };
 }
 
 const initalState = {
-  num: 0,
+  carousels: [],
+  guess: [],
 };
-
-function delay(timeout: number) {
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve();
-    }, timeout);
-  });
-}
 
 const homeModel: HomeModel = {
   namespace: 'home',
   state: initalState,
   reducers: {
-    add(state = initalState, {payload}) {
+    setState(state = initalState, {payload}) {
       return {
         ...state,
-        num: state.num + payload.num,
+        ...payload,
       };
     },
   },
   effects: {
-    *asyncAdd({payload}, {call, put}) {
-      yield call(delay, 1000);
+    *fetchCarousels(_, {call, put}) {
+      const {data} = yield call(axios.get, CAROUSEL_URL);
       yield put({
-        type: 'add',
-        payload,
+        type: 'setState',
+        payload: {
+          carousels: data,
+        },
+      });
+    },
+    *fetchGuess(_, {call, put}) {
+      const {data} = yield call(axios.get, GUESS_URL);
+      yield put({
+        type: 'setState',
+        payload: {
+          guess: data,
+        },
       });
     },
   },

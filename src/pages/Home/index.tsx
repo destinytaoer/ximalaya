@@ -1,13 +1,14 @@
-import React, {FC} from 'react';
-import {View, Text, Button} from 'react-native';
+import React, {FC, useEffect} from 'react';
+import {ScrollView} from 'react-native';
 import {connect, ConnectedProps} from 'react-redux';
 import {RootState} from '@models/index';
 import {RootStackNavigation} from '../../navigator';
 import Carousel from './Carousel';
+import Guess from './Guess';
 
 const mapStateToProps = ({home, loading}: RootState) => ({
-  num: home.num,
-  loading: loading.effects['home/asyncAdd'],
+  carousels: home.carousels,
+  loading: loading.effects['home/fetchCarousels'],
 });
 
 const connector = connect(mapStateToProps);
@@ -19,38 +20,20 @@ interface IProps extends ModelState {
 }
 
 const Home: FC<IProps> = (props) => {
-  const handlePress = () => {
-    const {navigation} = props;
-    navigation.navigate('Detail', {
-      id: 1000, // 跳转并传递参数
-    });
-  };
-  const handleAdd = () => {
-    const {dispatch} = props;
+  const {carousels, dispatch} = props;
+
+  // 请求轮播图数据
+  useEffect(() => {
     dispatch({
-      type: 'home/add',
-      payload: {
-        num: 1,
-      },
+      type: 'home/fetchCarousels',
     });
-  };
-  const asyncAdd = () => {
-    const {dispatch} = props;
-    dispatch({
-      type: 'home/asyncAdd',
-      payload: {
-        num: 2,
-      },
-    });
-  };
+  }, [dispatch]);
+
   return (
-    <View>
-      <Text>Home{props.num}</Text>
-      <Text>{props.loading && '正在加载中...'}</Text>
-      <Button title="add" onPress={() => asyncAdd()} />
-      <Button title="跳转到详情页" onPress={handlePress} />
-      <Carousel />
-    </View>
+    <ScrollView>
+      <Carousel data={carousels} />
+      <Guess />
+    </ScrollView>
   );
 };
 

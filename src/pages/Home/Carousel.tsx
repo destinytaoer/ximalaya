@@ -6,31 +6,26 @@ import SnapCarousel, {
 } from 'react-native-snap-carousel';
 import {StyleSheet, View} from 'react-native';
 import {viewportWidth, wp, hp} from '@utils/index';
+import {ICarousel} from '@models/home';
 
 const sliderWidth = viewportWidth;
 const imgWidth = wp(90);
 const imgHeight = hp(26);
 const itemWidth = imgWidth + wp(2) * 2;
-console.log(imgWidth, imgHeight);
 
-const imgs: Array<string> = [
-  'https://www.soohub.com/get_image/800-9f2c80969dd0bbe20a30859ddeda3286',
-  'https://www.soohub.com/get_image/800-d8990f780ca3881dcc65da7d5bc1e490',
-  'https://www.soohub.com/get_image/800-b148ee282753cde435b34ef6af68e84a',
-  'https://www.soohub.com/get_image/800-27d4072b62e85129b348b36baecc5633',
-  'https://www.soohub.com/get_image/800-4d9a1ca6184d70f8d941bed2394d6ccd',
-  'https://www.soohub.com/get_image/800-49a243d3234394931e08b8523dbea68d',
-  'https://www.soohub.com/get_image/800-b27da61cdf494d5180e9ef1e99c6982c',
-];
+interface IProps {
+  data: ICarousel[];
+}
 
-const Carousel: FC = () => {
+const Carousel: FC<IProps> = (props) => {
+  const {data} = props;
   const [activeIndex, setActiveIndex] = useState(0);
   const renderItem = (
-    {item}: {item: string; index: number},
+    {item}: {item: ICarousel; index: number},
     parallaxProps?: AdditionalParallaxProps,
   ) => (
     <ParallaxImage
-      source={{uri: item}}
+      source={{uri: item.image}}
       style={styles.image}
       containerStyle={styles.imageContainer}
       parallaxFactor={0.8}
@@ -48,7 +43,7 @@ const Carousel: FC = () => {
     return (
       <View style={styles.paginationWrapper}>
         <Pagination
-          dotsLength={imgs.length}
+          dotsLength={data.length}
           activeDotIndex={activeIndex}
           containerStyle={styles.paginationContainer}
           dotContainerStyle={styles.dotContainer}
@@ -63,7 +58,7 @@ const Carousel: FC = () => {
   return (
     <View>
       <SnapCarousel
-        data={imgs}
+        data={data}
         renderItem={renderItem}
         sliderWidth={sliderWidth}
         itemWidth={itemWidth}
