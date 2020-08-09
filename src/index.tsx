@@ -3,6 +3,7 @@ import {StatusBar} from 'react-native';
 import {Provider} from 'react-redux';
 import Navigator from '@navigator/index';
 import store from '@config/dva';
+import '@config/http';
 
 export default () => (
   <Provider store={store}>
