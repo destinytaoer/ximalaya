@@ -1,5 +1,5 @@
 import React, {FC, useEffect, useCallback} from 'react';
-import {FlatList, ListRenderItemInfo, View} from 'react-native';
+import {FlatList, ListRenderItemInfo, View, Alert} from 'react-native';
 import {connect, ConnectedProps} from 'react-redux';
 import {RootState} from '@models/index';
 import {RootStackNavigation} from '../../navigator';
@@ -39,8 +39,13 @@ const Home: FC<IProps> = (props) => {
     });
   }, [dispatch]);
 
+  const onPress = (data: IChannel) => {
+    console.log(data);
+    Alert.alert('点击');
+  };
+
   const renderItem = useCallback(({item}: ListRenderItemInfo<IChannel>) => {
-    return <ChannelItem data={item} />;
+    return <ChannelItem data={item} onPress={onPress} />;
   }, []);
 
   const renderHeader = useCallback(() => {
@@ -52,11 +57,13 @@ const Home: FC<IProps> = (props) => {
     );
   }, [carousels]);
 
+  const keyExtractor = useCallback((item: IChannel) => item.id, []);
+
   return (
     <FlatList
       data={channels}
       renderItem={renderItem}
-      keyExtractor={(item) => item.id}
+      keyExtractor={keyExtractor}
       ListHeaderComponent={renderHeader}
     />
   );

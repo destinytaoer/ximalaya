@@ -1,36 +1,47 @@
-import React, {FC} from 'react';
+import React, {FC, useCallback, memo} from 'react';
 import {View, Text, Image, StyleSheet} from 'react-native';
 import {IChannel} from '@models/home';
 import Icon from '@assets/iconfont/index';
+import Touchable from '@components/Touchable';
 
 interface IProps {
   data: IChannel;
+  onPress: (data: IChannel) => void;
 }
 
 const ChannelItem: FC<IProps> = (props) => {
-  const {data} = props;
+  const {data, onPress} = props;
+
+  const handlePress = useCallback(() => {
+    if (typeof onPress === 'function') {
+      onPress(data);
+    }
+  }, [onPress, data]);
+
   return (
-    <View style={styles.container}>
-      <Image source={{uri: data.image}} style={styles.image} />
-      <View style={styles.content}>
-        <Text style={styles.title} numberOfLines={1}>
-          {data.title}
-        </Text>
-        <Text style={styles.remark} numberOfLines={2}>
-          {data.remark}
-        </Text>
-        <View style={styles.bottom}>
-          <View style={styles.played}>
-            <Icon name="listen" />
-            <Text>{data.played}</Text>
-          </View>
-          <View style={styles.playing}>
-            <Icon name="listen" />
-            <Text>{data.playing}</Text>
+    <Touchable onPress={handlePress}>
+      <View style={styles.container}>
+        <Image source={{uri: data.image}} style={styles.image} />
+        <View style={styles.content}>
+          <Text style={styles.title} numberOfLines={1}>
+            {data.title}
+          </Text>
+          <Text style={styles.remark} numberOfLines={2}>
+            {data.remark}
+          </Text>
+          <View style={styles.bottom}>
+            <View style={styles.played}>
+              <Icon name="listen" />
+              <Text>{data.played}</Text>
+            </View>
+            <View style={styles.playing}>
+              <Icon name="listen" />
+              <Text>{data.playing}</Text>
+            </View>
           </View>
         </View>
       </View>
-    </View>
+    </Touchable>
   );
 };
 
@@ -81,4 +92,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ChannelItem;
+export default memo(ChannelItem);
